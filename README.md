@@ -10,4 +10,5 @@
 - Added more structure to the script.
 - Added more functions.
 - Added import statements.
-- pycodestyle compliant and pylint score of 5.93
+- pycodestyle compliant and pylint score of 5.93.
+- Updated from sys.argv to arg.parse options.
