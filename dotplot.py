@@ -63,8 +63,8 @@ def parse_command_args(args=sys.argv[1:]):
                         help='''Arg will specify the about of sequence
                         to compare if more than 20bp''')
 
-    arguments = parser.parse_args(args)
-    return arguments
+    options = parser.parse_args(args)
+    return options
 
 
 def main():
@@ -72,13 +72,12 @@ def main():
     This function checks for args and calls functions
     """
     options = parse_command_args()
-    af1 = sys.argv[2]
-    af2 = sys.argv[4]
-    for arg in sys.argv:
-        print(arg)
-        if arg == 'file1' and 'file2':
+    af1 = options.f1
+    af2 = options.f2
+        if options.f1 and options.f2:
             dotplotter(af1, af2)
-            print('You have only entered one file, go back and enter a second')
+        else:
+            print('You havent entered the correct arguments')
             sys.exit(0)
 
 
