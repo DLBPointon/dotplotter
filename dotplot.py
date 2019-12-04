@@ -138,7 +138,7 @@ def matrixspace(seq1, seq2, window, i=0, j=0):
         return marker(x, y)
 
 
-def makematrix(seq1, seq2, window):
+def makematrix(seq1, seq2):
     """A sub-function to create the matrix shape"""
     lenseq1 = len(seq1)
     lenseq2 = len(seq2)
@@ -148,7 +148,7 @@ def makematrix(seq1, seq2, window):
     #
     for i in range1:
         for j in range2:
-            return matrixspace(seq1, seq2, i, j, window)
+            return i, j
 
 def plotmatrix(matrix, thresh, seq1, seq2):
     """A sub-function to plot the results onto the matrix"""
@@ -162,7 +162,6 @@ def plotmatrix(matrix, thresh, seq1, seq2):
                     line = ''.join(notblank)
                 else:
                     line = ''.join(blank)
-                line = ''
 
     print('\\|' + seq2)
     print('-' * len(seq1) + '--')
@@ -178,22 +177,19 @@ def dotplotter(af1, af2, window = 1, thresh = 1):
     print(matrix)
     print(marker(seq1, seq2))
     plotmatrix(matrix, thresh, seq1, seq2)
-
-    if options.plot:
-        matplottoggle()
-    else:
-        pass
-
-    if options.asc:
-        asciitoggle()
-    else:
-        pass
-
-    if options.fil:
-        filtertoggle()
-    else:
-        pass
-
+    
+    print(seq1)
+    print(seq2)
+ 
+    seq11 = []
+    seq22 = []
+    for i in seq1:
+        seq11.append(i)
+    print(seq11)
+    for j in seq2:
+        seq22.append(j)
+    print(seq22)
+    x = np.array(seq11, seq22)
 
 # End of FILE
 if __name__ == '__main__':
