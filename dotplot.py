@@ -30,13 +30,13 @@ def parse_command_args(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(prog='Dot-Plotter',
                                      formatter_class=descformat,
                                      description=textwrap.dedent(__doc__))
-    parser.add_argument('-file1',
+    parser.add_argument('file1',
                         type=str,
                         action='store',
                         help='Input first FASTA file',
                         dest="f1",
                         required=True)
-    parser.add_argument('-file2',
+    parser.add_argument('file2',
                         type=str,
                         action='store',
                         help='Input Second FASTA file',
