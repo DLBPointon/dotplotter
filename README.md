@@ -17,3 +17,7 @@
 - Half of the functions now work.
 - Structure has been lost and work has become rather 'scatty'.
 - There is some duplication of efforts where I have gotten carried away.
+
+## 4/12/19
+- Over complecated structure of dotplot.py has lead me to start again in basics.py.
+- basics.py takes input sequences and returns the inner space of a dotplot.`
