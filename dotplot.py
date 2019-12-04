@@ -21,10 +21,10 @@ import numpy as np
 
 def parse_command_args(args=sys.argv[1:]):
     """
-    Sets up and parses command line arguments
+    Sets up and parses command line options
 
     Returns:
-        the arguments namespace
+        the options namespace
     """
     descformat = argparse.RawDescriptionHelpFormatter
     parser = argparse.ArgumentParser(prog='Dot-Plotter',
@@ -74,11 +74,11 @@ def main():
     options = parse_command_args()
     af1 = options.f1
     af2 = options.f2
-        if options.f1 and options.f2:
-            dotplotter(af1, af2)
-        else:
-            print('You havent entered the correct arguments')
-            sys.exit(0)
+    if options.f1 and options.f2:
+        dotplotter(af1, af2)
+    else:
+        print('You havent entered the correct options')
+        sys.exit(0)
 
 
 def openandsort(file1, file2):
@@ -113,33 +113,83 @@ def filtertoggle():
     # replace \\ with letter thats matched.
 
 
-def makematrix():
+def marker(seq1, seq2):
+    """A sub-function which marks the 
+    points where the sequences are similar"""
+    if seq1 == seq2:
+        return 0
+    else:
+        return 1
+
+
+def matrixspace(seq1, seq2, window, i=0, j=0):
+    """A sub-function to create the matrix space, 
+    now iterating over the sequences independantly * window 
+    we move through and check where there are similarities,
+    makes a list of scores"""
+    iterseq1 = seq1[i:i+window]
+    iterseq2 = seq2[j:j+window]
+
+    print(iterseq1)
+    print(iterseq2)
+
+    zipped = zip(iterseq1, iterseq2)
+    for x, y in zipped:
+        return marker(x, y)
+
+
+def makematrix(seq1, seq2, window):
     """A sub-function to create the matrix shape"""
+    lenseq1 = len(seq1)
+    lenseq2 = len(seq2)
 
+    range1 = range(lenseq1)
+    range2 = range(lenseq2)
+    #
+    for i in range1:
+        for j in range2:
+            return matrixspace(seq1, seq2, i, j, window)
 
-def matrixspace():
-    """A sub-function to create the matrix space"""
-
-
-def plotmatrix():
+def plotmatrix(matrix, thresh, seq1, seq2):
     """A sub-function to plot the results onto the matrix"""
+    notblank = '\\'
+    blank = ' '
+    line = ''
+
+    for i in seq2:
+            for j in seq1:
+                if i == j:
+                    line = ''.join(notblank)
+                else:
+                    line = ''.join(blank)
+                line = ''
+
+    print('\\|' + seq2)
+    print('-' * len(seq1) + '--')
+    for letter in seq1:
+        print(f'{letter}|{line}')
 
 
-def dotplotter(af1, af2):
+def dotplotter(af1, af2, window = 1, thresh = 1):
     """The main function which contains all of the logic used in this script"""
+    options = parse_command_args()
     seq1, head1, seq2, head2 = openandsort(af1, af2)
+    matrix = matrixspace(seq1, seq2, 0, 0, window)
+    print(matrix)
+    print(marker(seq1, seq2))
+    plotmatrix(matrix, thresh, seq1, seq2)
 
-    if arguments.plot:
+    if options.plot:
         matplottoggle()
     else:
         pass
 
-    if arguments.asc:
+    if options.asc:
         asciitoggle()
     else:
         pass
 
-    if arguments.fil:
+    if options.fil:
         filtertoggle()
     else:
         pass
