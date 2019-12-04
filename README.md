@@ -12,3 +12,8 @@
 - Added import statements.
 - pycodestyle compliant and pylint score of 5.93.
 - Updated from sys.argv to arg.parse options.
+
+## 4/12/19
+- Half of the functions now work.
+- Structure has been lost and work has become rather 'scatty'.
+- There is some duplication of efforts where I have gotten carried away.
