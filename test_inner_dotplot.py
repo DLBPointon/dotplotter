@@ -1,9 +1,6 @@
 from basics import inner_dotplot
-def test_inner_dotplot_results1():
-	assert inner_dotplot('ABC', 'ABC') == __doc__
-"""
-A--
--B-
---C
-"""
+
+
+def test_result_of_inner_dotplot():
+	assert inner_dotplot('AB', 'AB') == ['A', '-', '|A\n', '-', 'B', '|B\n']
 
