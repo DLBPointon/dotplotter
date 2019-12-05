@@ -20,4 +20,9 @@
 
 ## 4/12/19
 - Over complecated structure of dotplot.py has lead me to start again in basics.py.
-- basics.py takes input sequences and returns the inner space of a dotplot.`
+- basics.py takes input sequences and returns the inner space of a dotplot.
+
+## 5/12/19
+- Inner_dotplot function working.
+- May require the joining of the innerplot to happen after the outter plot is added to the list.
+
