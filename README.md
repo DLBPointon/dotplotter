@@ -31,3 +31,9 @@
 ### Update 3
 - pytest on inner_dotplot function - Passed
 - pytest on outter_dotplot function - Fails due to multi-line formatting error
+### Update 4
+- Basic ArgParse arguments have been set and tested.
+- Script is now executable.
+- Now takes input files - although function could be halved.
+- Tested on various size files and is working.
+- ascii filter works when specified as --ascii in the command line.
