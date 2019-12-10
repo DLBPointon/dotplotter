@@ -37,3 +37,12 @@
 - Now takes input files - although function could be halved.
 - Tested on various size files and is working.
 - ascii filter works when specified as --ascii in the command line.
+
+## 9/12/19
+- Added strip to seq_1 and seq_2 to get rid on unexpected newlines.
+### Update 2
+- Started on Matplotlib implimentation.
+
+## 10/12/19
+- Added __doc__ to each function.
+- Additional changes to matplot function.
