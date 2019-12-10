@@ -68,12 +68,12 @@ def main():
     seq_1, seq_2, header_1, header_2 = loadingfiles(op.file1, op.file2,)
     results_list = inner_dotplot(seq_1, seq_2, op.ascii)
     allplot, lenseq1, lenseq2 = outter_dotplot(results_list, seq_1, seq_2)
-    matplot = matplotter(seq_1, seq_2, header_1, header_2)
+    # matplot = matplotter(seq_1, seq_2, header_1, header_2)
 
     print(f'The X axis is: {header_1}')
     print(f'X = {seq_1}')
     print(f'The Y axis is: {header_2}')
-    print(f'Y = {seq_2}')
+    print(f'Y = {seq_2} \n')
     print(allplot)
 
 def loadingfiles(file1, file2):
@@ -123,22 +123,22 @@ def outter_dotplot(results_list, seq_1, seq_2):
     return allplot, lenseq1, lenseq2
 
 
-def matplotter(seq_1, seq_2, head_1, head_2):
-    listseq1 = list(seq_1)
-    listseq2 = list(seq_2)
-    print(listseq1)
-    print(listseq2)
-    # xvalues = np.array(listseq1)
-    # yvalues = np.array(listseq2)
-    # X,Y = np.meshgrid(xvalues, yvalues)
-    # print(X)
-    # print(Y)
+# def matplotter(seq_1, seq_2, head_1, head_2):
+#     listy = []
+#     listseq1 = list(seq_1)
+#     listseq2 = list(seq_2)
+    
+#     xvalues = np.array(listseq1)
+#     yvalues = np.array(listseq2)
 
-    # plt.title(f'A Dot-Plot to show the relatedness of {head_1} and {head_2}')
-    # plt.xlabel(head_1)
-    # plt.ylabel(head_2)
-    # plt.show()
+#     X,Y = np.meshgrid(xvalues, yvalues)
+#     print(X)
+#     print(Y)
 
+#     plt.title(f'A Dot-Plot to show the relatedness of {head_1} and {head_2}')
+#     plt.xlabel(head_1)
+#     plt.ylabel(head_2)
+    
 
 if __name__ == '__main__':
     main()
