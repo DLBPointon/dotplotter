@@ -46,3 +46,8 @@
 ## 10/12/19
 - Added __doc__ to each function.
 - Additional changes to matplot function.
+
+## 11/12/19
+- Completed matplot function, this stops the printing of the terminal dotplot and only returns the matplotlib variant called via --matplot.
+### Update 2
+- pycodestyle compliant, formatting fixes and argument syntax fixes.
