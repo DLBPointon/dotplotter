@@ -10,20 +10,20 @@ A script to take two sequences and
 return a dot plot which shows the
 similarity between the two.
 The plot can be further modified by
-calling the --ascii and --matplot
+calling the --code and --matplot
 flags.
 -------------------------------------
 Arguments:
-    -file1
+    -fasta1
     The first input file for the
     script
 
-    -file2
+    -fasta2
     The second input file for the
     script
 
 Optional Arguments:
-    --ascii
+    --code
     Replaces the text output of the
     inner_dotplot with \\ for
     matches and . for no matches.
@@ -34,16 +34,18 @@ Optional Arguments:
 -------------------------------------
 
 """
-import sys
 import argparse
 import textwrap
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-def parse_command_args(args=sys.argv[1:]):
+def parse_command_args(args=None):
     """ A function to verify arguments and return those
-    celled to the required functions. """
+    celled to the required functions.
+    args = None means that if nothing is passes then
+    sys.argv[1:] is passed"""
+
     descformat = argparse.RawDescriptionHelpFormatter
     parser = argparse.ArgumentParser(prog='FileParsing',
                                      formatter_class=descformat,
@@ -53,19 +55,21 @@ def parse_command_args(args=sys.argv[1:]):
                         action='version',
                         version='%(prog)s Alpha 1.0')
 
-    parser.add_argument('-file1',
+    parser.add_argument('-fasta1',
                         type=str,
                         action='store',
                         help='The first file for input',
-                        required=True)
+                        required=True,
+                        dest='f1')
 
-    parser.add_argument('-file2',
+    parser.add_argument('-fasta2',
                         type=str,
                         action='store',
                         help='The first file for input',
-                        required=True)
+                        required=True,
+                        dest='f2')
 
-    parser.add_argument('--ascii',
+    parser.add_argument('--code',
                         action='store_true',
                         help='''Specifying this argument converts the
                         letter based output to \\''')
@@ -75,20 +79,21 @@ def parse_command_args(args=sys.argv[1:]):
                         help='''Converts the traditional Dotplot into a
                          matplot based plot''')
 
-    op = parser.parse_args(args)
-    return op
+    option = parser.parse_args(args)
+    return option
 
 
 def main():
     """ The main function which contains all the
     required logic for the correct running of
     the script. """
-    op = parse_command_args()
-    seq_1, seq_2, head_1, head_2 = loadingfiles(op.file1, op.file2,)
-    results_list = inner_dotplot(seq_1, seq_2, op.ascii)
+
+    option = parse_command_args()
+    seq_1, seq_2, head_1, head_2 = loadingfiles(option.f1, option.f2)
+    results_list = inner_dotplot(seq_1, seq_2, option.code)
     allplot, lenseq1, lenseq2 = outter_dotplot(results_list, seq_1, seq_2)
-    if op.matplot:
-        matplot = matplotter(seq_1, seq_2, head_1, head_2, lenseq1, lenseq2)
+    if option.matplot:
+        matplotter(lenseq1, lenseq2)
     else:
         print(f'The X axis is: {head_1}')
         print(f'X = {seq_1}')
@@ -97,17 +102,18 @@ def main():
         print(allplot)
 
 
-def loadingfiles(file1, file2):
+def loadingfiles(fasta1, fasta2):
     """ A function to take the file paths input
     from the command line and parses the files
     for further use. """
-    with open(file1, 'r') as file1:
-        lines1 = file1.readlines()
+
+    with open(fasta1, 'r') as fasta1:
+        lines1 = fasta1.readlines()
         head_1 = lines1[0]
         seq_1 = lines1[1]
 
-    with open(file2, 'r') as file2:
-        lines2 = file2.readlines()
+    with open(fasta2, 'r') as fasta2:
+        lines2 = fasta2.readlines()
         head_2 = lines2[0]
         seq_2 = lines2[1]
 
@@ -116,22 +122,23 @@ def loadingfiles(file1, file2):
     return seq_1, seq_2, head_1, head_2
 
 
-def inner_dotplot(seq_1, seq_2, ascii=False):
+def inner_dotplot(seq_1, seq_2, code=False):
     """ A function which creates the inner plot of the
     Dotplot in the form of a list and also appends the
     seq to the side of the finished plot.
-    if ascii argument is passed, letters will be replaced with
+    if code argument is passed, letters will be replaced with
     back slashes ('\\'). """
+
     results_list = []
     for i in seq_1:
         for j in seq_2:
             if i == j:
-                if ascii is False:
+                if code is False:
                     results_list.append(i)
                 else:
                     results_list.append('\\')
             else:
-                if ascii is False:
+                if code is False:
                     results_list.append('-')
                 else:
                     results_list.append(' ')
@@ -155,11 +162,16 @@ def outter_dotplot(results_list, seq_1, seq_2):
     return allplot, lenseq1, lenseq2
 
 
-def matplotter(seq_1, seq_2, head_1, head_2, lenseq1, lenseq2):
+def matplotter(lenseq1, lenseq2):
     """ A function to convert the results of the previous
     dot plot functions and produce a matplotlib plot
     which conveys the same information in a prettier
-    format. """
+    format.
+    duplication of loading file required for pylint too
+    many arguments error."""
+    option = parse_command_args()
+    seq_1, seq_2, head_1, head_2 = loadingfiles(option.f1, option.f2)
+
     xvalues = np.array(list(seq_1))
     yvalues = np.array(list(seq_2))
 
@@ -172,7 +184,8 @@ def matplotter(seq_1, seq_2, head_1, head_2, lenseq1, lenseq2):
     plt.ylabel(head_2)
 
     plt.imshow(xvalues == yvalues[:, None])
-    plt.show()
+    matplot = plt.show()
+    return matplot
 
 
 if __name__ == '__main__':
