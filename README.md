@@ -50,4 +50,13 @@
 ## 11/12/19
 - Completed matplot function, this stops the printing of the terminal dotplot and only returns the matplotlib variant called via --matplot.
 ### Update 2
-- pycodestyle compliant, formatting fixes and argument syntax fixes.
+- PyCodeStyle compliant, formatting fixes and argument syntax fixes.
+### Update 3
+- argument --ascii has been changed to --code to comply with pylint.
+### Update 4
+- arguments -file1 and -file2 changed to fasta1 and fasta2.
+- loadingfiles function duplicated in matplot function for pylint compliance of too many arguments. Avoiding use of global to ease this as it could complicate code.
+- sys.argv[1:] replaced with None.
+- removed import sys as now defunc.
+- PyLint score of 9.73.
+- PyCodeStyle compliant.
