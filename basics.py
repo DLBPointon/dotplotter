@@ -90,13 +90,15 @@ def main():
 
     option = parse_command_args()
     seq_1, seq_2, head_1, head_2 = loadingfiles(option.f1, option.f2)
+    lenseq1 = len(seq_1)
+    lenseq2 = len(seq_2)
     results_list = inner_dotplot(seq_1, seq_2, option.code)
-    allplot, lenseq1, lenseq2 = outter_dotplot(results_list, seq_1, seq_2)
+    allplot = outter_dotplot(results_list, seq_1, seq_2)
     if option.matplot:
         matplotter(lenseq1, lenseq2)
     else:
         print(f'The X axis is: {head_1}')
-        print(f'X = {seq_1}')
+        print(f'X = {seq_1} \n')
         print(f'The Y axis is: {head_2}')
         print(f'Y = {seq_2} \n')
         print(allplot)
@@ -144,6 +146,8 @@ def inner_dotplot(seq_1, seq_2, code=False):
                     results_list.append(' ')
         results_list.append(f'|{i}\n')
     # print(results_list)
+    # print(seq_1)
+    # print(seq_2)
     return results_list
 
 
@@ -157,9 +161,9 @@ def outter_dotplot(results_list, seq_1, seq_2):
     results_list = list(seq_2) + formatting1 + results_list
     results_list.insert(lenseq2, '\n')
 
-    # print(results_list)
     allplot = ''.join(results_list)
-    return allplot, lenseq1, lenseq2
+    # print(allplot)
+    return allplot
 
 
 def matplotter(lenseq1, lenseq2):
