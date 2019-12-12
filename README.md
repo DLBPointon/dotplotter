@@ -60,3 +60,11 @@
 - removed import sys as now defunc.
 - PyLint score of 9.73.
 - PyCodeStyle compliant.
+
+## 12/12/19
+- PyTest files formatted for PyCodeStyle compliance.
+	- Finally Uploaded after not including them along with commits.
+- Recap on PyTests.
+	- InnerDotplot tests all pass.
+	- OutterDotplot tests all pass.
+	
