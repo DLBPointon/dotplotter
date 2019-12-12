@@ -85,5 +85,5 @@ Controlled by main() the final output will include the headers:
 ## Matplotfunction output
 For the sequence above the --matplot flag will not produce anything on the commandline but will create a new window with the correct matplot graph.
 
-- ![alt text](matplot_example.png 'Example of the --matplot flag')
+- ![alt text](https://github.com/ARU-Bioinf-IBDS/coursework-DLBPointon/blob/master/matplot_example.png 'Example of the --matplot flag')
 ---
