@@ -67,4 +67,7 @@
 - Recap on PyTests.
 	- InnerDotplot tests all pass.
 	- OutterDotplot tests all pass.
-	
+
+## 13/12/19
+- Started of a propper filter implimentation which will replace singluar matches with '.' rather than '\\'.
+- This function works but struggles when it comes to the end of the list - index out of range error.
