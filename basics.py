@@ -90,10 +90,18 @@ def main():
 
     option = parse_command_args()
     seq_1, seq_2, head_1, head_2 = loadingfiles(option.f1, option.f2)
+
     lenseq1 = len(seq_1)
     lenseq2 = len(seq_2)
+    
     results_list = inner_dotplot(seq_1, seq_2, option.code)
-    allplot = outter_dotplot(results_list, seq_1, seq_2)
+    
+    if option.code:
+        results_list = codedplot(results_list, lenseq1)
+        allplot = outter_dotplot(results_list, seq_1, seq_2)
+    else:
+        allplot = outter_dotplot(results_list, seq_1, seq_2)
+
     if option.matplot:
         matplotter(lenseq1, lenseq2)
     else:
@@ -101,7 +109,8 @@ def main():
         print(f'X = {seq_1} \n')
         print(f'The Y axis is: {head_2}')
         print(f'Y = {seq_2} \n')
-        print(allplot)
+    
+    print(allplot)
 
 
 def loadingfiles(fasta1, fasta2):
@@ -149,6 +158,19 @@ def inner_dotplot(seq_1, seq_2, code=False):
     # print(seq_1)
     # print(seq_2)
     return results_list
+
+def codedplot(results_list, lenseq1):
+    for slsh in range(len(results_list)):
+        if results_list[slsh] == '\\':
+            if results_list[slsh+lenseq1] == ' ':
+                if results_list[slsh-lenseq1]==' ':
+                    results_list[slsh] = '.'
+                else:
+                    results_list[slsh] = results_list[slsh]
+        else:
+            results_list[slsh] = results_list[slsh]
+        result = ''.join(results_list)
+        print(result)
 
 
 def outter_dotplot(results_list, seq_1, seq_2):
