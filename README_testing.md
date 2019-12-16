@@ -13,4 +13,8 @@
 - test_outter_dotplot3.py - Passed
 
 ## 12/12/19
-- tests uploaded to gihub
+- tests uploaded to gihub.
+- attempting to create tests for matplot and ascii.
+
+## 16/12/19
+- TravisCI implimented and working.
