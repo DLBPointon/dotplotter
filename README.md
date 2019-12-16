@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/ARU-Bioinf-IBDS/coursework-DLBPointon.svg?token=LGoasuVQ9cynU6b8TsHk&branch=master)](https://travis-ci.com/ARU-Bioinf-IBDS/coursework-DLBPointon)
+
 # Coursework-1836811
 
 ## 29/11/19
@@ -64,6 +66,7 @@
 ## 12/12/19
 - PyTest files formatted for PyCodeStyle compliance.
 	- Finally Uploaded after not including them along with commits.
+	- Test per file due to failing if more than one test is in each file (carrying over of previous test results).
 - Recap on PyTests.
 	- InnerDotplot tests all pass.
 	- OutterDotplot tests all pass.
@@ -72,3 +75,12 @@
 - Started of a propper filter implimentation which will replace singluar matches with '.' rather than '\\'.
 - This function works but struggles when it comes to the end of the list - index out of range error.
 - Changes to command structure for flexibility of flag usage.
+
+## 16/12/19
+- Edited test scripts to the current and correct number of arguments.
+- All tests are now in the main folder, as opposed to the test_scripts folder, made for failures in getting script.
+- TravisCI implimented and Badge added to the README.md.
+- Small additions have been made to basics.py for PyCodeStyle compliance.
+- PyCodeStyle Compliant.
+- PyLint score of 9.66/10.
+- README.md update.
