@@ -93,14 +93,14 @@ def main():
 
     lenseq1 = len(seq_1)
     lenseq2 = len(seq_2)
-    
+
     results_list = inner_dotplot(seq_1, seq_2, option.code)
-    
+
     if option.code:
-        results_list = codedplot(results_list, lenseq1)
-        allplot = outter_dotplot(results_list, seq_1, seq_2)
+        # results_list = codedplot(results_list, lenseq1)
+        allplot = outter_dotplot(results_list, seq_2)
     else:
-        allplot = outter_dotplot(results_list, seq_1, seq_2)
+        allplot = outter_dotplot(results_list, seq_2)
 
     if option.matplot:
         matplotter(lenseq1, lenseq2)
@@ -109,7 +109,7 @@ def main():
         print(f'X = {seq_1} \n')
         print(f'The Y axis is: {head_2}')
         print(f'Y = {seq_2} \n')
-    
+
     print(allplot)
 
 
@@ -160,10 +160,12 @@ def inner_dotplot(seq_1, seq_2, code=False):
     return results_list
 
 def codedplot(results_list, lenseq1):
+    """ A function for finding strings of matches and returning
+    a '\\' or '.' depending on length of match"""
     for slsh in range(len(results_list)):
         if results_list[slsh] == '\\':
             if results_list[slsh+lenseq1] == ' ':
-                if results_list[slsh-lenseq1]==' ':
+                if results_list[slsh-lenseq1] == ' ':
                     results_list[slsh] = '.'
                 else:
                     results_list[slsh] = results_list[slsh]
@@ -173,11 +175,10 @@ def codedplot(results_list, lenseq1):
         print(result)
 
 
-def outter_dotplot(results_list, seq_1, seq_2):
+def outter_dotplot(results_list, seq_2):
     """ A funxction to which finihses the formatting
     of the dotplot and adds the top seq. """
 
-    lenseq1 = len(seq_1)
     lenseq2 = len(seq_2)
     formatting1 = list('=' * lenseq2 + '|\n')
     results_list = list(seq_2) + formatting1 + results_list
