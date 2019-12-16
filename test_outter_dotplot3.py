@@ -19,4 +19,4 @@ def test_result_of_outter_dotplot():
 						   '-', 'C', 'C', '-', 'C', 'C', '-', '|C\n',
 						   '-', '-', '-', '-', '-', '-', '-', '|B\n',
 						   'A', '-', '-', 'A', '-', '-', 'A', '|A\n'],
-						   'ABCACBA', 'ACCACCA') == x
+						   'ACCACCA') == x

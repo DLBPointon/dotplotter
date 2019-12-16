@@ -56,5 +56,5 @@ def test_result_of_outter_dotplot():
 						   '-', 'G', '-', '-', '-', '-', '|G\n',
 						   '-', 'T', '-', '-', '-', '-', 'T', '-', '-',
 						   'T', '-', '-', 'T', '-', '-', '|T\n'],
-						   'ATCGTAGCTACGTACGT', 'ATGCGATCGTGCTAC') == x
+						   'ATGCGATCGTGCTAC') == x
 	
