@@ -159,18 +159,19 @@ def inner_dotplot(seq_1, seq_2, code=False):
     # print(seq_2)
     return results_list
 
+
 def codedplot(results_list, lenseq1):
     """ A function for finding strings of matches and returning
     a '\\' or '.' depending on length of match"""
-    for slsh in range(len(results_list)):
-        if results_list[slsh] == '\\':
-            if results_list[slsh+lenseq1] == ' ':
-                if results_list[slsh-lenseq1] == ' ':
-                    results_list[slsh] = '.'
+    for space in range(len(results_list)):
+        if results_list[space] == '\\':
+            if results_list[space+lenseq1] == ' ':
+                if results_list[space-lenseq1] == ' ':
+                    results_list[space] = '.'
                 else:
-                    results_list[slsh] = results_list[slsh]
+                    results_list[space] = results_list[space]
         else:
-            results_list[slsh] = results_list[slsh]
+            results_list[space] = results_list[space]
         result = ''.join(results_list)
         print(result)
 
