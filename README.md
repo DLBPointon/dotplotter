@@ -122,3 +122,6 @@
 - Small sentence structure changes.
 ### Update 7
 - PyTest Updated for new outputs.
+### Update 8
+- PyTests have been concatenated into three files based on function being tested.
+	- e.g test_inner_dotplot, test_inner_dotplot_code, test_outter_dotplot

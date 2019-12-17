@@ -27,4 +27,6 @@
 - test_outter_dotplot2.py - Passed.
 - test_outter_dotplot3.py - Passed.
 ### Update 2
-- tests have all been updated for new output - passed
+- tests have all been updated for new output - Passed.
+### Update 3
+- tests have been concatenated and sorted into function groups - Passed.
