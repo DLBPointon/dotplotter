@@ -6,6 +6,8 @@
 - Travis CI - implemented 16/12/19 along with badge.
 - Matplotlib - implemented 11/12/19.
 - Save Function - for raw and code functions implimented 17/12/19.
+- Inverted the ASCII and Alphabetical selection - ASCII is default and code arg returns an alphabetised plot.
+- Will accept only one file, this will be used as both sequences.
 
 ## 29/11/19
 - Started and outlined use of Argument Parser command structure.
@@ -112,4 +114,11 @@
 ### Update 5
 - Added new PyTests to account for --code - test_inner_dotplot_code + code2 + code3.
 - Same cannot be applied to outter_dotplot due to requirements from previous function (inner_dotplot).
-
+### Update 6
+- Inverted the ASCII and alphabetical options so ASCII is defaulted.
+- loadingfiles adapted to be able to accept only 1 file.
+- Documentation has been changes to reflect this.
+- Changes will cause PyTest Failures.
+- Small sentence structure changes.
+### Update 7
+- PyTest Updated for new outputs.

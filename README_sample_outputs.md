@@ -10,7 +10,7 @@
 
 
 ---
-## Output of inner_dotplot function
+## Output of inner_dotplot function with --code:
 
 - For input strings coming from the file reading function:
 	- seq_1:
@@ -38,7 +38,7 @@
 	- seq_2
 
 - The output is:
-	- the plot:
+	- theplot:
 		-	The X axis is: >Head
 			X = ABCACBA
 			The Y axis is: >Header
@@ -55,7 +55,7 @@
 			A--A--A|A
 ---
 
-## Output of the --code filter:
+## Output:
 For the same input sequences.
 
 - For inner_dotplot:
@@ -70,7 +70,7 @@ For the same input sequences.
 		- The visual formatting inconsistancy is caused by the size of \\ compared to ' '.
 
 - For outter_dotplot:
-	- allplot:
+	- theplot:
 		- 	The X axis is: >Head
 			X = ABCACBA
 			The Y axis is: >Header
