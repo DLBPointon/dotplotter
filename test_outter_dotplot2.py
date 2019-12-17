@@ -1,6 +1,10 @@
 from basics import outter_dotplot
 
-x = '''ATGCGATCGTGCTAC
+x = '''
+The X axis is: >HeadX = ATCGTAGCTACGTACGT
+The Y axis is: >HeaderY = ATGCGATCGTGCTAC
+
+ATGCGATCGTGCTAC
 ===============|
 A----A-------A-|A
 -T----T--T--T--|T
@@ -56,5 +60,6 @@ def test_result_of_outter_dotplot():
 						   '-', 'G', '-', '-', '-', '-', '|G\n',
 						   '-', 'T', '-', '-', '-', '-', 'T', '-', '-',
 						   'T', '-', '-', 'T', '-', '-', '|T\n'],
-						   'ATGCGATCGTGCTAC') == x
+						   'ATCGTAGCTACGTACGT','ATGCGATCGTGCTAC', '>Head',
+						   '>Header') == x
 	

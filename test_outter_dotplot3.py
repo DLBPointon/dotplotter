@@ -1,6 +1,10 @@
 from basics import outter_dotplot
 
-x = '''ACCACCA
+x = '''
+The X axis is: >HeadX = ABCACBA
+The Y axis is: >HeaderY = ACCACCA
+
+ACCACCA
 =======|
 A--A--A|A
 -------|B
@@ -19,4 +23,4 @@ def test_result_of_outter_dotplot():
 						   '-', 'C', 'C', '-', 'C', 'C', '-', '|C\n',
 						   '-', '-', '-', '-', '-', '-', '-', '|B\n',
 						   'A', '-', '-', 'A', '-', '-', 'A', '|A\n'],
-						   'ACCACCA') == x
+						   'ABCACBA','ACCACCA', '>Head', '>Header') == x
