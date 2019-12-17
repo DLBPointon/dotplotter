@@ -72,13 +72,13 @@ CHECK FOR FOLLOWING DEPENDENCIES:
 Arguments:
     -fasta1
     The first input file for the
-    script
-
-    -fasta2
-    The second input file for the
-    script
+    script.
 
 Optional Arguments:
+    --fasta2
+    The second input file for the
+    script.
+
     --code
     Replaces the ASCII output of the
     inner_dotplot with the Alphabet
@@ -97,24 +97,25 @@ Optional Arguments:
 -------------------------------------
 Calling this script:
 
+
 For a basic (ASCII) dotplot you call:
-./bascis.py -fasta1 {file1} -fasta2
+./bascis.py -fasta1 {file1} --fasta2
 {file2}
 
 For an Alphabetical plot:
-./basics.py -fasta1 {file1} -fasta2
+./basics.py -fasta1 {file1} --fasta2
 {file2} --code
 This will return an alphabetical plot
 
 For a Matplot enabled plot:
-./basics.py -fasta1 {file1} -fasta2
+./basics.py -fasta1 {file1} --fasta2
 {file2} --matplot
 
 Saving files can be called by:
-./basics.py -fasta1 {file1} -fasta2
+./basics.py -fasta1 {file1} --fasta2
 {file2} --code --save {name}
 or
-./bascis.py -fasta1 {file1} -fasta2
+./bascis.py -fasta1 {file1} --fasta2
 {file2} --save {name}
 
 Saved files will be found in a

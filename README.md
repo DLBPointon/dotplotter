@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/ARU-Bioinf-IBDS/coursework-DLBPointon.svg?token=LGoasuVQ9cynU6b8TsHk&branch=master)](https://travis-ci.com/ARU-Bioinf-IBDS/coursework-DLBPointon)
 
-# Coursework-1836811
+# Coursework
 
 ## Advanced Features
 - Travis CI - implemented 16/12/19 along with badge.
