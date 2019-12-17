@@ -1,6 +1,53 @@
 #!/usr/bin/env python
 
-"""
+import sys
+if sys.version_info[0] < 3 and sys.version_info[1] < 7:
+    raise Exception("""Must be using Python 3.7 for the full
+                    functionality of this script""")
+if sys.version_info[0] >= 3 and sys.version_info[1] >= 7:
+    print('Your using at least Version 3.7, You are good to go...')
+
+PRINT_ERROR = '''Does not exist\n
+                 Get module installed before import attempt\n
+                 If running server side then contact your admin'''
+try:
+    import argparse
+    print('argparse imported')
+except ImportError:
+    print('argparse not imported')
+    print(PRINT_ERROR)
+    sys.exit(0)
+
+try:
+    import textwrap
+    print('textwrap imported')
+except ImportError:
+    print('textwrap not imported is it installed?')
+    print(PRINT_ERROR)
+    sys.exit(0)
+
+try:
+    import numpy as np
+    print('numpy imported')
+except ImportError:
+    print('numpy not imported is it installed?')
+    print(PRINT_ERROR)
+    sys.exit(0)
+
+try:
+    import matplotlib.pyplot as plt
+    print('matplotlib imported')
+except ImportError:
+    print('matplotlib not imported is it installed?')
+    print(PRINT_ERROR)
+    sys.exit(0)
+
+""" Please use ./basics.py -h for the full
+__doc__ (Not placed here due to Error in calling
+__doc__ from textwrap when used in conjunction
+with sanity checkers)."""
+
+DOCSTRING = """
 -------------------------------------
              Dot Plotter
 -------------------------------------
@@ -12,6 +59,9 @@ similarity between the two.
 The plot can be further modified by
 calling the --code and --matplot
 flags.
+-------------------------------------
+
+
 -------------------------------------
 Arguments:
     -fasta1
@@ -34,10 +84,6 @@ Optional Arguments:
 -------------------------------------
 
 """
-import argparse
-import textwrap
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 def parse_command_args(args=None):
@@ -49,7 +95,7 @@ def parse_command_args(args=None):
     descformat = argparse.RawDescriptionHelpFormatter
     parser = argparse.ArgumentParser(prog='FileParsing',
                                      formatter_class=descformat,
-                                     description=textwrap.dedent(__doc__))
+                                     description=DOCSTRING)
 
     parser.add_argument('-v', '--version',
                         action='version',
@@ -71,8 +117,8 @@ def parse_command_args(args=None):
 
     parser.add_argument('--code',
                         action='store_true',
-                        help='''Specifying this argument converts the
-                        letter based output to \\''')
+                        help='''This argument converts the letter based
+                        output to ascii''')
 
     parser.add_argument('--matplot',
                         action='store_true',
