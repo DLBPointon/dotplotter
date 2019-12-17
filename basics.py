@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+""" Please use ./basics.py -h for the full
+__doc__ (Not placed here due to Error in calling
+__doc__ from textwrap when used in conjunction
+with sanity checkers)."""
+
 import sys
 if sys.version_info[0] < 3 and sys.version_info[1] < 7:
     raise Exception("""Must be using Python 3.7 for the full
@@ -19,14 +24,6 @@ except ImportError:
     sys.exit(0)
 
 try:
-    import textwrap
-    print('textwrap imported')
-except ImportError:
-    print('textwrap not imported is it installed?')
-    print(PRINT_ERROR)
-    sys.exit(0)
-
-try:
     import numpy as np
     print('numpy imported')
 except ImportError:
@@ -42,10 +39,13 @@ except ImportError:
     print(PRINT_ERROR)
     sys.exit(0)
 
-""" Please use ./basics.py -h for the full
-__doc__ (Not placed here due to Error in calling
-__doc__ from textwrap when used in conjunction
-with sanity checkers)."""
+try:
+    import os
+    print('os imported')
+except ImportError:
+    print('os not imported is it installed?')
+    print(PRINT_ERROR)
+    sys.exit(0)
 
 DOCSTRING = """
 -------------------------------------
@@ -60,7 +60,13 @@ The plot can be further modified by
 calling the --code and --matplot
 flags.
 -------------------------------------
-
+CHECK FOR FOLLOWING DEPENDENCIES:
+    - sys - version checking.
+    - argparse - command structure.
+    - numpy - for matplotlib.
+    - matplotlib - graphical plots.
+    - os - for directory
+           manipulation.
 
 -------------------------------------
 Arguments:
@@ -80,9 +86,43 @@ Optional Arguments:
 
     --matplot
     Replaces the terminal output
-    with a matplotlib plot
--------------------------------------
+    with a matplotlib plot.
 
+    --save
+    Activates the save function which
+    will allow the saving of the
+    raw or code plot.
+    If used with --matplot, None will
+    be saved.
+-------------------------------------
+Calling this script:
+
+For a basic dotplot you call:
+./bascis.py -fasta1 {file1} -fasta2
+{file2}
+This will return an alphabetical plot
+
+For an ASCII plot:
+./basics.py -fasta1 {file1} -fasta2
+{file2} --code
+
+For a Matplot enabled plot:
+./basics.py -fasta1 {file1} -fasta2
+{file2} --matplot
+
+Saving files can be called by:
+./basics.py -fasta1 {file1} -fasta2
+{file2} --code --save {name}
+or
+./bascis.py -fasta1 {file1} -fasta2
+{file2} --save {name}
+
+Saved files will be found in a
+dot_plot_output/ folder in the
+current directory.
+This will contain the user-named
+file.
+-------------------------------------
 """
 
 
@@ -125,6 +165,11 @@ def parse_command_args(args=None):
                         help='''Converts the traditional Dotplot into a
                          matplot based plot''')
 
+    parser.add_argument('--save',
+                        action='store',
+                        help='''The file name of the newfile which will
+                        contain the output of this script''')
+
     option = parser.parse_args(args)
     return option
 
@@ -141,22 +186,21 @@ def main():
     lenseq2 = len(seq_2)
 
     results_list = inner_dotplot(seq_1, seq_2, option.code)
-
     if option.code:
         # results_list = codedplot(results_list, lenseq1)
-        allplot = outter_dotplot(results_list, seq_2)
+        # Above functio has been cut due to lack of operation
+
+        theplot = outter_dotplot(results_list, seq_1, seq_2, head_1, head_2)
+        if option.save:
+            saveoutput(theplot, option.save)
+
     else:
-        allplot = outter_dotplot(results_list, seq_2)
+        theplot = outter_dotplot(results_list, seq_1, seq_2, head_1, head_2)
 
     if option.matplot:
         matplotter(lenseq1, lenseq2)
     else:
-        print(f'The X axis is: {head_1}')
-        print(f'X = {seq_1} \n')
-        print(f'The Y axis is: {head_2}')
-        print(f'Y = {seq_2} \n')
-
-    print(allplot)
+        print(theplot)
 
 
 def loadingfiles(fasta1, fasta2):
@@ -176,6 +220,7 @@ def loadingfiles(fasta1, fasta2):
 
     seq_1 = seq_1.strip()
     seq_2 = seq_2.strip()
+
     return seq_1, seq_2, head_1, head_2
 
 
@@ -192,37 +237,45 @@ def inner_dotplot(seq_1, seq_2, code=False):
             if i == j:
                 if code is False:
                     results_list.append(i)
+
                 else:
                     results_list.append('\\')
             else:
                 if code is False:
                     results_list.append('-')
+
                 else:
                     results_list.append(' ')
         results_list.append(f'|{i}\n')
-    # print(results_list)
-    # print(seq_1)
-    # print(seq_2)
+
     return results_list
 
 
 def codedplot(results_list, lenseq1):
     """ A function for finding strings of matches and returning
-    a '\\' or '.' depending on length of match"""
+    a '\\' or '.' depending on length of match
+    The idea behind this function was to iterate through the
+    results_list and simply replace. This can somewhat work but
+    will not for the last line in the plot."""
     for space in range(len(results_list)):
+
         if results_list[space] == '\\':
+
             if results_list[space+lenseq1] == ' ':
+
                 if results_list[space-lenseq1] == ' ':
-                    results_list[space] = '.'
+                    results_list[space-lenseq1] = '.'
+
                 else:
                     results_list[space] = results_list[space]
         else:
             results_list[space] = results_list[space]
+
         result = ''.join(results_list)
         print(result)
 
 
-def outter_dotplot(results_list, seq_2):
+def outter_dotplot(results_list, seq_1, seq_2, head_1, head_2):
     """ A funxction to which finihses the formatting
     of the dotplot and adds the top seq. """
 
@@ -232,8 +285,14 @@ def outter_dotplot(results_list, seq_2):
     results_list.insert(lenseq2, '\n')
 
     allplot = ''.join(results_list)
-    # print(allplot)
-    return allplot
+
+    theplot = f'''
+The X axis is: {head_1}X = {seq_1}
+The Y axis is: {head_2}Y = {seq_2}
+
+{allplot}'''
+
+    return theplot
 
 
 def matplotter(lenseq1, lenseq2):
@@ -241,7 +300,7 @@ def matplotter(lenseq1, lenseq2):
     dot plot functions and produce a matplotlib plot
     which conveys the same information in a prettier
     format.
-    duplication of loading file required for pylint too
+    Duplication of loadingfiles() required for pylint too
     many arguments error."""
     option = parse_command_args()
     seq_1, seq_2, head_1, head_2 = loadingfiles(option.f1, option.f2)
@@ -252,14 +311,29 @@ def matplotter(lenseq1, lenseq2):
     plt.xticks(np.arange(lenseq1), seq_1)
     plt.yticks(np.arange(lenseq2), seq_2)
 
-    plt.title(f'A Dot-Plot to show the relatedness of\n{head_1}and\n{head_2}')
+    plt.title(f'A Dot-Plot to show the relatedness of\n{head_1}\n&\n{head_2}')
 
     plt.xlabel(head_1)
     plt.ylabel(head_2)
 
     plt.imshow(xvalues == yvalues[:, None])
     matplot = plt.show()
+
     return matplot
+
+
+def saveoutput(inputed, saved):
+    """ A function to add file save functionality"""
+    try:
+        os.mkdir('dot_plot_output/')
+        print('Folder Made')
+
+    except FileExistsError:
+        print('Folder already exists')
+
+    with open(f'dot_plot_output/{saved}.txt', 'w') as newfile:
+        newfile.write(f'{inputed}')
+        print(f'Find your file at {saved}.txt')
 
 
 if __name__ == '__main__':
