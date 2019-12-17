@@ -84,3 +84,9 @@
 - PyCodeStyle Compliant.
 - PyLint score of 9.66/10.
 - README.md update.
+
+## 17/12/19
+- Added Sanity checks for python version and imports.
+- __doc__ changes due to error caused by calling __doc__ from textwrap and argparse. __doc__ now requests user call ./bascis.py -h for the original __doc__ message.
+- README.me changes.
+
