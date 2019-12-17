@@ -80,9 +80,9 @@ Arguments:
 
 Optional Arguments:
     --code
-    Replaces the text output of the
-    inner_dotplot with \\ for
-    matches and . for no matches.
+    Replaces the ASCII output of the
+    inner_dotplot with the Alphabet
+    for matches.
 
     --matplot
     Replaces the terminal output
@@ -97,14 +97,14 @@ Optional Arguments:
 -------------------------------------
 Calling this script:
 
-For a basic dotplot you call:
+For a basic (ASCII) dotplot you call:
 ./bascis.py -fasta1 {file1} -fasta2
 {file2}
-This will return an alphabetical plot
 
-For an ASCII plot:
+For an Alphabetical plot:
 ./basics.py -fasta1 {file1} -fasta2
 {file2} --code
+This will return an alphabetical plot
 
 For a Matplot enabled plot:
 ./basics.py -fasta1 {file1} -fasta2
@@ -148,17 +148,16 @@ def parse_command_args(args=None):
                         required=True,
                         dest='f1')
 
-    parser.add_argument('-fasta2',
+    parser.add_argument('--fasta2',
                         type=str,
                         action='store',
                         help='The first file for input',
-                        required=True,
                         dest='f2')
 
     parser.add_argument('--code',
                         action='store_true',
-                        help='''This argument converts the letter based
-                        output to ascii''')
+                        help='''This argument converts code (ascii) to
+                        the alphabet''')
 
     parser.add_argument('--matplot',
                         action='store_true',
@@ -207,6 +206,13 @@ def loadingfiles(fasta1, fasta2):
     """ A function to take the file paths input
     from the command line and parses the files
     for further use. """
+    option = parse_command_args()
+    if option.f2:
+        print('Two files passed')
+        pass
+    else:
+        print('One file passed \n fasta1 will be used instead')
+        fasta2 = fasta1
 
     with open(fasta1, 'r') as fasta1:
         lines1 = fasta1.readlines()
@@ -225,23 +231,22 @@ def loadingfiles(fasta1, fasta2):
 
 
 def inner_dotplot(seq_1, seq_2, code=False):
-    """ A function which creates the inner plot of the
-    Dotplot in the form of a list and also appends the
-    seq to the side of the finished plot.
-    if code argument is passed, letters will be replaced with
-    back slashes ('\\'). """
+    """ A function which creates the inner plot of the Dotplot in the
+    form of a list and also appends the seq to the side of the finished
+    plot. If the argument is passed, letters will be replaced with back
+    slashes ('\\'). """
 
     results_list = []
     for i in seq_1:
         for j in seq_2:
             if i == j:
-                if code is False:
+                if code is True:
                     results_list.append(i)
 
                 else:
                     results_list.append('\\')
             else:
-                if code is False:
+                if code is True:
                     results_list.append('-')
 
                 else:
@@ -254,9 +259,9 @@ def inner_dotplot(seq_1, seq_2, code=False):
 def codedplot(results_list, lenseq1):
     """ A function for finding strings of matches and returning
     a '\\' or '.' depending on length of match
-    The idea behind this function was to iterate through the
-    results_list and simply replace. This can somewhat work but
-    will not for the last line in the plot."""
+    This function was to iterate through the results_list and simply
+    replace. This can somewhat work but will not for the last line in 
+    the plot."""
     for space in range(len(results_list)):
 
         if results_list[space] == '\\':
