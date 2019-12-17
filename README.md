@@ -2,6 +2,11 @@
 
 # Coursework-1836811
 
+## Advanced Features
+- Travis CI - implemented 16/12/19 along with badge.
+- Matplotlib - implemented 11/12/19.
+- Save Function - for raw and code functions implimented 17/12/19.
+
 ## 29/11/19
 - Started and outlined use of Argument Parser command structure.
 - Started outline of definitions I may need for the script.
@@ -89,4 +94,22 @@
 - Added Sanity checks for python version and imports.
 - __doc__ changes due to error caused by calling __doc__ from textwrap and argparse. __doc__ now requests user call ./bascis.py -h for the original __doc__ message.
 - README.me changes.
+### Update 2 
+- Updated PyTests for new layout of results.
+- Added saveoutput function which works with the raw and code outputs.
+- Added os and sanity check for directory making.
+- Expanded the args required for outter_dorplot function, although this will writen code scores it is the simpler option in this case.
+### Update 3
+- Formatting changes for Code Styling compliance.
+- Script calling examples.
+- PyCodeStyle compliant.
+- PyLint 9.76/10.
+### Update 4
+- README.md update.
+- README_testing.md updated.
+- README_sample_outputs.txt updated.
+- README_sample_outputs.txt renamed to .md.
+### Update 5
+- Added new PyTests to account for --code - test_inner_dotplot_code + code2 + code3.
+- Same cannot be applied to outter_dotplot due to requirements from previous function (inner_dotplot).
 
